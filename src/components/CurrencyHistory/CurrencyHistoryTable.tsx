@@ -10,10 +10,12 @@ import Button from '@mui/material/Button';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { ExchangeRecord } from '../../interfaces';
+import { useNavigate } from 'react-router-dom';
 
 const CurrencyHistoryTable = () => {
   const [onHover, setOnHover] = useState<number>(-1);
   const [record, setRecord] = useState<ExchangeRecord[]>([]);
+  const navigate = useNavigate();
 
   const onMouseEnter = (obj: number) => {
     setOnHover(obj);
@@ -24,7 +26,13 @@ const CurrencyHistoryTable = () => {
   };
 
   const onViewHistory = (obj: number) => {
-    console.log('onViewHistory', obj);
+    const rec = record?.find((item, i) => obj === i);
+    if (rec) {
+      navigate({
+        pathname: '/',
+        search: `?from=${rec.from}&to=${rec.to}&amount=${rec.amount}`
+      });
+    }
   };
 
   const onDeleteHistory = (obj: number) => {

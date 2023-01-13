@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Radio from '@mui/material/Radio';
 import Grid from '@mui/material/Grid';
 import RadioGroup from '@mui/material/RadioGroup';

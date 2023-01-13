@@ -15,21 +15,30 @@ type Props = {
 
 const HistoryStatistics: FC<Props> = ({ exchangeList, to }) => {
   const [lowest, setLowest] = useState(0);
-  const [average, setAverage] = useState(0);
-  const [max, setMax] = useState(0);
+  const [average, setAverage] = useState('');
+  const [maximum, setMaximum] = useState(0);
 
   // Calculating statistics values
   useEffect(() => {
     if (exchangeList) {
-      const list: any = Object.entries(exchangeList).map(([key, val]) => {
-        return val[to];
-      });
+      //calculating statistics values
+      const { min, max, sum, length } = Object.entries(exchangeList).reduce(
+        (acc, curr) => {
+          const low = acc.min === 0 || acc.min > curr[1][to] ? curr[1][to] : acc.min;
+          const high = acc.max === 0 || acc.max < curr[1][to] ? curr[1][to] : acc.max;
 
-      // console.log("list", list.sort((a: number, b: number) => (a - b)));
-      const sortedList = list.sort((a: number, b: number) => a - b);
-      setLowest(sortedList[0]);
-      setMax(sortedList[list.length - 1]);
-      setAverage(sortedList[list.length - 1]);
+          return {
+            min: low,
+            max: high,
+            length: acc.length + 1,
+            sum: acc.sum + curr[1][to]
+          };
+        },
+        { sum: 0, min: 0, max: 0, length: 0 }
+      );
+      setLowest(min);
+      setMaximum(max);
+      setAverage((sum / length).toFixed(6));
     }
   }, [to, exchangeList]);
   return (
@@ -66,7 +75,7 @@ const HistoryStatistics: FC<Props> = ({ exchangeList, to }) => {
               Maximum
             </TableCell>
             <TableCell align="left" width={'50%'}>
-              {max}
+              {maximum}
             </TableCell>
           </TableRow>
         </TableBody>

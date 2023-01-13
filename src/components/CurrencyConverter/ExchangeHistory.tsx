@@ -22,11 +22,10 @@ const ExchangeHistory: FC<Props> = ({ from, to }) => {
   const [exchangeList, setExchangeList] = useState<ExchangeHistoryType | undefined>();
 
   const fetchPrevousRates = async (start: string, end: string) => {
-    const res: any = await fetch(
+    const res = await fetch(
       `https://api.exchangerate.host/timeseries?start_date=${start}&end_date=${end}&base=${from}`
     );
     const data = await res.json();
-    console.log('FetchPrevousRates', start, end, data);
     setExchangeList(data?.rates);
   };
 
@@ -34,7 +33,7 @@ const ExchangeHistory: FC<Props> = ({ from, to }) => {
     const end = format(new Date(), 'yyyy-MM-dd');
     const start = format(subDays(new Date(), parseInt(duration)), 'yyyy-MM-dd');
     fetchPrevousRates(start, end);
-  }, [from, to]);
+  }, [from, to, fetchPrevousRates, duration]);
 
   const onChangeDuration = async (value: string) => {
     const end = format(new Date(), 'yyyy-MM-dd');
