@@ -30,10 +30,16 @@ const CurrencyConvterForm: FC<Props> = ({
   onChangeTo,
   onSwapCurrency,
   convertCurrency,
-  rateList
+  rateList,
 }) => (
-  <Grid container spacing={2} direction="row" justifyContent="space-between" alignItems="center">
-    <Grid xs={2}>
+  <Grid
+    container
+    spacing={2}
+    direction="row"
+    justifyContent="space-between"
+    alignItems="center"
+  >
+    <Grid item xs={2}>
       <TextField
         label="amount"
         variant="standard"
@@ -45,7 +51,7 @@ const CurrencyConvterForm: FC<Props> = ({
       />
     </Grid>
 
-    <Grid xs={3}>
+    <Grid item xs={3}>
       <FormControl variant="standard" sx={{ width: '100%' }}>
         <InputLabel id="demo-simple-select-standard-label">from</InputLabel>
         <Select
@@ -53,7 +59,8 @@ const CurrencyConvterForm: FC<Props> = ({
           id="demo-simple-select-standard"
           value={from}
           onChange={(e) => onChangeFrom(e.target.value as string)}
-          label="from">
+          label="from"
+        >
           {rateList &&
             Object.entries(rateList).map(([k], i) => (
               <MenuItem value={k} key={i}>
@@ -64,20 +71,21 @@ const CurrencyConvterForm: FC<Props> = ({
       </FormControl>
     </Grid>
 
-    <Grid xs={1} textAlign="center">
+    <Grid item xs={1} textAlign="center">
       <Button
         sx={{
           width: '45px',
-          height: '45px'
+          height: '45px',
         }}
         variant="outlined"
         size="small"
-        onClick={() => onSwapCurrency()}>
+        onClick={() => onSwapCurrency()}
+      >
         <CompareArrowsIcon color="primary" fontSize="medium" />
       </Button>
     </Grid>
 
-    <Grid xs={3}>
+    <Grid item xs={3}>
       <FormControl variant="standard" sx={{ width: '100%' }}>
         <InputLabel id="demo-simple-select-standard-label">to</InputLabel>
         <Select
@@ -85,7 +93,8 @@ const CurrencyConvterForm: FC<Props> = ({
           id="demo-simple-select-standard"
           value={to}
           onChange={(e) => onChangeTo(e.target.value as string)}
-          label="to">
+          label="to"
+        >
           {rateList &&
             Object.entries(rateList).map(([k], i) => (
               <MenuItem value={k} key={i}>
@@ -96,7 +105,7 @@ const CurrencyConvterForm: FC<Props> = ({
       </FormControl>
     </Grid>
 
-    <Grid xs={2} textAlign="end">
+    <Grid item xs={2} textAlign="end">
       <Button variant="contained" onClick={() => convertCurrency()}>
         CONVERT
       </Button>

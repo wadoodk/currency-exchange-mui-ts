@@ -14,7 +14,6 @@ type Props = {
 };
 
 const HistoryTable: FC<Props> = ({ exchangeList, to }) => {
-  // useEffect(() => {}, [to, exchangeList]);
   return (
     <TableContainer component={Paper}>
       <Table size="medium">
@@ -31,7 +30,10 @@ const HistoryTable: FC<Props> = ({ exchangeList, to }) => {
         <TableBody>
           {exchangeList &&
             Object.entries(exchangeList)?.map(([item, value], i) => (
-              <TableRow key={i} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow
+                key={i}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
                 <TableCell align="left">{item}</TableCell>
                 <TableCell align="left"> {value[to]}</TableCell>
               </TableRow>

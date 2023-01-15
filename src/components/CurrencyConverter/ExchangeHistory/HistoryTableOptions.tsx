@@ -24,8 +24,9 @@ const HistoryTableOptions: FC<Props> = ({ duration, onChangeDuration }) => {
       alignItems={'start'}
       justifyContent={'start'}
       spacing={2}
-      mt={'4'}
-      mb={'4'}>
+      mt={1}
+      mb={1}
+    >
       <Grid>
         <FormControl sx={{ minWidth: 200 }}>
           <InputLabel id="demo-simple-select-label">Duration</InputLabel>

@@ -44,8 +44,8 @@ const CurrencyConverter = () => {
         amount: parseFloat(amount),
         rate: newRate,
         from: from,
-        to: to
-      }
+        to: to,
+      },
     ];
     setResultAmount(amount);
     localStorage.setItem('record', JSON.stringify(temp));
@@ -73,20 +73,21 @@ const CurrencyConverter = () => {
       setAmount(paramAmount);
       setResultAmount(paramAmount);
       convertRate(paramTo, paramFrom);
-    } else {
-      fetch('https://api.exchangerate.host/latest')
-        .then((res) => res.json())
-        .then((res) => {
-          if (res?.rates) {
-            setRateList(res?.rates);
-            setRate(res?.rates[to]);
-          }
-        })
-        .catch((e) => console.log(e));
     }
+    fetch('https://api.exchangerate.host/latest')
+      .then((res) => res.json())
+      .then((res) => {
+        if (res?.rates) {
+          setRateList(res?.rates);
+          setRate(res?.rates[to]);
+        }
+      })
+      .catch((e) => console.log(e));
 
     // syncing the history record
-    const list: ExchangeRecord[] = JSON.parse(localStorage.getItem('record') || '[]');
+    const list: ExchangeRecord[] = JSON.parse(
+      localStorage.getItem('record') || '[]'
+    );
     if (list) {
       setRecord(list);
     }

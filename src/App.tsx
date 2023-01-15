@@ -18,7 +18,8 @@ function App() {
               <Layout>
                 <Home />
               </Layout>
-            }></Route>
+            }
+          ></Route>
           <Route
             path="/history"
             element={

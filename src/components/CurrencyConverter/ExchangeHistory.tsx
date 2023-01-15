@@ -19,7 +19,9 @@ const ExchangeHistory: FC<Props> = ({ from, to }) => {
   const [startDate, setStartDate] = useState(
     format(subDays(new Date(), parseInt(duration)), 'yyyy-MM-dd')
   );
-  const [exchangeList, setExchangeList] = useState<ExchangeHistoryType | undefined>();
+  const [exchangeList, setExchangeList] = useState<
+    ExchangeHistoryType | undefined
+  >();
 
   const fetchPrevousRates = async (start: string, end: string) => {
     const res = await fetch(
@@ -45,15 +47,22 @@ const ExchangeHistory: FC<Props> = ({ from, to }) => {
   };
 
   return (
-    <Grid xs={12} container direction="row" alignItems="start" spacing={3} mt={2}>
-      <Grid xs={12} pl={1}>
-        <Typography variant="h3" mb={4}>
-          Exchange History
-        </Typography>
-        <HistoryTableOptions duration={duration} onChangeDuration={onChangeDuration} />
-      </Grid>
+    <Grid container direction="row" alignItems="start" spacing={3} mt={2}>
+      <Typography variant="h3" mb={4}>
+        Exchange History
+      </Typography>
+      <HistoryTableOptions
+        duration={duration}
+        onChangeDuration={onChangeDuration}
+      />
 
-      <Grid container direction="row" justifyContent={'center'} alignItems="start" xs={12} mt={4}>
+      <Grid
+        container
+        direction="row"
+        justifyContent={'center'}
+        alignItems="start"
+        mt={4}
+      >
         <Grid width={'49%'}>
           <HistoryTable exchangeList={exchangeList} to={to} />
         </Grid>

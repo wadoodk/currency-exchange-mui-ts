@@ -30,7 +30,7 @@ const CurrencyHistoryTable = () => {
     if (rec) {
       navigate({
         pathname: '/',
-        search: `?from=${rec.from}&to=${rec.to}&amount=${rec.amount}`
+        search: `?from=${rec.from}&to=${rec.to}&amount=${rec.amount}`,
       });
     }
   };
@@ -42,7 +42,9 @@ const CurrencyHistoryTable = () => {
   };
 
   useEffect(() => {
-    const list: ExchangeRecord[] = JSON.parse(localStorage.getItem('record') ?? '[]');
+    const list: ExchangeRecord[] = JSON.parse(
+      localStorage.getItem('record') ?? '[]'
+    );
     if (list) {
       setRecord(list);
     }
@@ -70,7 +72,8 @@ const CurrencyHistoryTable = () => {
               key={i}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               onMouseEnter={() => onMouseEnter(i)}
-              onMouseLeave={() => onMouseLeave()}>
+              onMouseLeave={() => onMouseLeave()}
+            >
               <TableCell align="left">{item.date}</TableCell>
               <TableCell align="left">
                 {`Converted and amount of ${item.amount} from ${item.from} to ${item.to}`}
@@ -83,7 +86,11 @@ const CurrencyHistoryTable = () => {
                       <RemoveRedEyeIcon fontSize="small" />
                       &nbsp; View
                     </Button>
-                    <Button size="small" color="warning" onClick={() => onDeleteHistory(i)}>
+                    <Button
+                      size="small"
+                      color="warning"
+                      onClick={() => onDeleteHistory(i)}
+                    >
                       <DeleteForeverIcon fontSize="small" />
                       Delete from history
                     </Button>

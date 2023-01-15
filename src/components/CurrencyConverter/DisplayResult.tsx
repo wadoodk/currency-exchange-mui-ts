@@ -21,7 +21,8 @@ const DisplayResult: FC<Props> = ({ from, to, rate, amount }) => {
             align="left"
             fontSize={49}
             fontWeight="Bold"
-            color="secondary">
+            color="secondary"
+          >
             {convertToCurrency(parseInt(amount) * rate, to, 0)}
           </Typography>
         </Typography>
@@ -29,13 +30,21 @@ const DisplayResult: FC<Props> = ({ from, to, rate, amount }) => {
 
       <Grid item>
         <Typography variant="body1">
-          {`${convertToCurrency(1, from)} = ${convertToCurrency(1 * rate, to, 6)}`}
+          {`${convertToCurrency(1, from)} = ${convertToCurrency(
+            1 * rate,
+            to,
+            6
+          )}`}
         </Typography>
       </Grid>
 
       <Grid item>
         <Typography variant="body1">
-          {`${convertToCurrency(1, to)} = ${convertToCurrency(1 / rate, from, 5)}`}
+          {`${convertToCurrency(1, to)} = ${convertToCurrency(
+            1 / rate,
+            from,
+            5
+          )}`}
         </Typography>
       </Grid>
     </Grid>

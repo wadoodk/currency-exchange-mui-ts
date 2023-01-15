@@ -24,14 +24,16 @@ const HistoryStatistics: FC<Props> = ({ exchangeList, to }) => {
       //calculating statistics values
       const { min, max, sum, length } = Object.entries(exchangeList).reduce(
         (acc, curr) => {
-          const low = acc.min === 0 || acc.min > curr[1][to] ? curr[1][to] : acc.min;
-          const high = acc.max === 0 || acc.max < curr[1][to] ? curr[1][to] : acc.max;
+          const low =
+            acc.min === 0 || acc.min > curr[1][to] ? curr[1][to] : acc.min;
+          const high =
+            acc.max === 0 || acc.max < curr[1][to] ? curr[1][to] : acc.max;
 
           return {
             min: low,
             max: high,
             length: acc.length + 1,
-            sum: acc.sum + curr[1][to]
+            sum: acc.sum + curr[1][to],
           };
         },
         { sum: 0, min: 0, max: 0, length: 0 }
@@ -52,7 +54,10 @@ const HistoryStatistics: FC<Props> = ({ exchangeList, to }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow key={0} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+          <TableRow
+            key={0}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          >
             <TableCell align="left" width={'50%'}>
               Lowest
             </TableCell>
@@ -61,7 +66,10 @@ const HistoryStatistics: FC<Props> = ({ exchangeList, to }) => {
             </TableCell>
           </TableRow>
 
-          <TableRow key={2} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+          <TableRow
+            key={2}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          >
             <TableCell align="left" width={'50%'}>
               Average
             </TableCell>
@@ -70,7 +78,10 @@ const HistoryStatistics: FC<Props> = ({ exchangeList, to }) => {
             </TableCell>
           </TableRow>
 
-          <TableRow key={3} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+          <TableRow
+            key={3}
+            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+          >
             <TableCell align="left" width={'50%'}>
               Maximum
             </TableCell>
