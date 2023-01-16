@@ -53,10 +53,8 @@ const CurrencyConvterForm: FC<Props> = ({
 
     <Grid item xs={3}>
       <FormControl variant="standard" sx={{ width: '100%' }}>
-        <InputLabel id="demo-simple-select-standard-label">from</InputLabel>
+        <InputLabel>from</InputLabel>
         <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
           value={from}
           onChange={(e) => onChangeFrom(e.target.value as string)}
           label="from"
@@ -87,10 +85,8 @@ const CurrencyConvterForm: FC<Props> = ({
 
     <Grid item xs={3}>
       <FormControl variant="standard" sx={{ width: '100%' }}>
-        <InputLabel id="demo-simple-select-standard-label">to</InputLabel>
+        <InputLabel>to</InputLabel>
         <Select
-          labelId="demo-simple-select-standard-label"
-          id="demo-simple-select-standard"
           value={to}
           onChange={(e) => onChangeTo(e.target.value as string)}
           label="to"
