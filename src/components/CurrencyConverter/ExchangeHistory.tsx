@@ -15,10 +15,6 @@ interface Props {
 
 const ExchangeHistory: FC<Props> = ({ from, to }) => {
   const [duration, setDuration] = useState('7');
-  const [endDate, setEndDate] = useState(format(new Date(), 'yyyy-MM-dd'));
-  const [startDate, setStartDate] = useState(
-    format(subDays(new Date(), parseInt(duration)), 'yyyy-MM-dd')
-  );
   const [exchangeList, setExchangeList] = useState<
     ExchangeHistoryType | undefined
   >();
@@ -35,14 +31,12 @@ const ExchangeHistory: FC<Props> = ({ from, to }) => {
     const end = format(new Date(), 'yyyy-MM-dd');
     const start = format(subDays(new Date(), parseInt(duration)), 'yyyy-MM-dd');
     fetchPrevousRates(start, end);
-  }, [from, to, fetchPrevousRates, duration]);
+  }, [from, to, duration]);
 
   const onChangeDuration = async (value: string) => {
     const end = format(new Date(), 'yyyy-MM-dd');
     const start = format(subDays(new Date(), parseInt(value)), 'yyyy-MM-dd');
     setDuration(value);
-    setStartDate(start);
-    setEndDate(end);
     fetchPrevousRates(start, end);
   };
 

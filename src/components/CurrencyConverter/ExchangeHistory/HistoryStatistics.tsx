@@ -28,21 +28,24 @@ const HistoryStatistics: FC<Props> = ({ exchangeList, to }) => {
             acc.min === 0 || acc.min > curr[1][to] ? curr[1][to] : acc.min;
           const high =
             acc.max === 0 || acc.max < curr[1][to] ? curr[1][to] : acc.max;
+          const total = curr[1][to] ? acc.sum + curr[1][to] : acc.sum;
 
           return {
             min: low,
             max: high,
             length: acc.length + 1,
-            sum: acc.sum + curr[1][to],
+            sum: total,
           };
         },
         { sum: 0, min: 0, max: 0, length: 0 }
       );
+
       setLowest(min);
       setMaximum(max);
       setAverage((sum / length).toFixed(6));
     }
-  }, [to, exchangeList]);
+  }, [to, exchangeList, setLowest, setMaximum, setAverage]);
+
   return (
     <TableContainer component={Paper}>
       <Table>
